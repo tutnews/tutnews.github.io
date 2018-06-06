@@ -1,0 +1,97 @@
+/*var videos = document.querySelectorAll('video');
+
+enableVideos(videos);
+
+function enableVideos(videos) {
+console.log(videos);
+	for (var i = 0; i < videos.length; i++) {
+		
+		if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            makeVideoPlayableInline(videos[i], false, false);
+        } else {
+            makeVideoPlayableInline(videos[i], true, false);
+        }
+	}
+}*/
+
+$('video').each(function () {
+ 	enableInlineVideo(this);
+});
+
+
+
+/*$(document).ready(function(){
+    if($(window).width() > 720){
+        var h = $('.other-news-cards').height()+73+'px';
+        scroollyElement(h);
+        
+        $(window).resize(function(){
+            h = $('.other-news-cards').height()+73+'px';
+            scroollyElement(h);
+        });
+    }
+});*/
+
+function scroollyElement(h){
+    $('.banner').scroolly([
+    {
+        to: 'con-top' + h + ' = vp-top',
+        css: {
+            position: 'relative',
+            top: '',
+            bottom: ''
+        }
+    },
+    {
+        from: 'con-top' + h + ' = vp-top',
+        to: 'con-bottom = vp-bottom',
+        css: {
+            position: 'fixed',
+            top: '5px',
+            bottom: 'auto'
+        }
+    },
+    {
+        from: 'con-bottom = vp-bottom',
+        to: 'doc-bottom',
+        css: {
+            position: 'absolute',
+            top: 'auto',
+            bottom: '5px'
+        }
+    }
+    ], $('.sideRight'));
+}
+
+
+var country_code = $('#user_country').val();
+    
+   
+switch (country_code) {
+    case 'BLR':
+        $('.dynamic_country').text('Беларуси');
+        $('.dynamic_city').text('Минск');
+        break;
+    case 'KAZ':
+        $('.dynamic_country').text('Казахстане');
+        $('.dynamic_city').text('Астана');
+        break;
+    case 'RUS':
+        $('.dynamic_country').text('России');
+        $('.dynamic_city').text('Москва');
+    break;
+    default:
+        $('.dynamic_country').text('России');
+        $('.dynamic_city').text('Москва');
+}
+
+        
+$(document).ready(function(){
+    var w = $('.sideRight').width();
+    $('.banner').css('width', w);
+    
+    $(window).resize(function(){
+        w = $('.sideRight').width();
+        $('.banner').css('width', w);
+    });
+});
